@@ -1,0 +1,32 @@
+
+.layout-container {
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.menu-lateral {
+  width: 130px;
+  background-color: var(--color-surface);
+  border-right: none;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+}
+
+.layout-content {
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.layout-main {
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .menu-lateral {
+    width: 80px;
+  }
+
+  .layout-main {
+    padding: 16px;
+  }
+}
