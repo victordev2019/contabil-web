@@ -59,5 +59,29 @@
     "dataHoraSituacaoLote": "2026-11-24T12:30:00",
     "instituicaoResponsavel": "0002",
     "instituicao": "0002"
+  },
+   {
+    "idLote": 1005,
+    "dataEntrada": "2026-11-24T09:10:00",
+    "valorLote": 18900.00,
+    "quantidadeLancamentos": 12,
+    "usuarioRegistro": "mariana.alves",
+    "usuarioAprovacao": "roberto.souza",
+    "situacaoLote": "CONFIRMADO",
+    "dataHoraSituacaoLote": "2026-11-24T12:30:00",
+    "instituicaoResponsavel": "0002",
+    "instituicao": "0002"
+  },
+   {
+    "idLote": 1005,
+    "dataEntrada": "2026-11-24T09:10:00",
+    "valorLote": 18900.00,
+    "quantidadeLancamentos": 12,
+    "usuarioRegistro": "mariana.alves",
+    "usuarioAprovacao": "roberto.souza",
+    "situacaoLote": "CONFIRMADO",
+    "dataHoraSituacaoLote": "2026-11-24T12:30:00",
+    "instituicaoResponsavel": "0002",
+    "instituicao": "0002"
   }
 ]
