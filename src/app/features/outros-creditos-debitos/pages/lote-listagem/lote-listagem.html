@@ -1,4 +1,6 @@
 
 <mat-card class="lote-card">
-  <app-lote-filtros />
+  <app-lote-filtros (pesquisar)="pesquisar($event)" />
+  <app-lote-acoes [quantidadeSelecionada]="0" />
+  <app-lote-tabela [lotes]="lotes()"/>
 </mat-card>

@@ -1,7 +1,7 @@
-
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { MenuLateral } from '../components/menu-lateral';
 import { Cabecalho } from '../components/cabecalho';
 
@@ -16,4 +16,14 @@ import { Cabecalho } from '../components/cabecalho';
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })
-export class Layout {}
+export class Layout {
+  protected readonly menuAberto = signal(true);
+
+  protected alternarMenu(): void {
+    this.menuAberto.update((aberto) => !aberto);
+  }
+
+  protected fecharMenu(): void {
+    this.menuAberto.set(false);
+  }
+}

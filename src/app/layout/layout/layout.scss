@@ -1,20 +1,34 @@
-
 .layout-container {
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--color-background);
 }
 
 .menu-lateral {
+  position: fixed;
+  top: 0;
+  bottom: 0;
   width: 130px;
   background-color: var(--color-surface);
   border-right: none;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.10);
   overflow: hidden;
+  transition: width 180ms ease;
+
+  &.menu-recolhido {
+    width: 56px;
+  }
 }
 
 .layout-content {
-  min-height: 100vh;
+  height: 100vh;
+  margin-left: 130px;
+  transition: margin-left 180ms ease;
+  overflow-y: auto;
   background-color: var(--color-background);
+}
+
+.layout-container:has(.menu-lateral.menu-recolhido) .layout-content {
+  margin-left: 56px;
 }
 
 .layout-main {
@@ -24,6 +38,18 @@
 @media (max-width: 768px) {
   .menu-lateral {
     width: 80px;
+
+    &.menu-recolhido {
+      width: 56px;
+    }
+  }
+
+  .layout-content {
+    margin-left: 80px;
+  }
+
+  .layout-container:has(.menu-lateral.menu-recolhido) .layout-content {
+    margin-left: 56px;
   }
 
   .layout-main {

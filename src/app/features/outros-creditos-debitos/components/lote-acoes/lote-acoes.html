@@ -1,0 +1,12 @@
+<div class="lote-acoes">
+  @for (acao of acoes; track acao.label) {
+    <button
+      mat-flat-button
+      class="btn-primary"
+      type="button"
+      [disabled]="acao.exigeSelecaoUnica && !possuiSelecaoUnica()"
+    >
+      {{ acao.label }}
+    </button>
+  }
+</div>

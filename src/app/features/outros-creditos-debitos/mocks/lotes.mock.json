@@ -1,0 +1,63 @@
+
+[
+  {
+    "idLote": 1001,
+    "dataEntrada": "2026-11-20T09:30:00",
+    "valorLote": 12500.50,
+    "quantidadeLancamentos": 15,
+    "usuarioRegistro": "joao.silva",
+    "usuarioAprovacao": "maria.santos",
+    "situacaoLote": "CONFIRMADO",
+    "dataHoraSituacaoLote": "2026-11-20T14:45:00",
+    "instituicaoResponsavel": "0001",
+    "instituicao": "0001"
+  },
+  {
+    "idLote": 1002,
+    "dataEntrada": "2026-11-21T10:15:00",
+    "valorLote": 8750.00,
+    "quantidadeLancamentos": 8,
+    "usuarioRegistro": "ana.costa",
+    "usuarioAprovacao": null,
+    "situacaoLote": "ABERTO",
+    "dataHoraSituacaoLote": "2026-11-21T10:15:00",
+    "instituicaoResponsavel": "0002",
+    "instituicao": "0001"
+  },
+  {
+    "idLote": 1003,
+    "dataEntrada": "2026-11-22T11:00:00",
+    "valorLote": 23400.75,
+    "quantidadeLancamentos": 22,
+    "usuarioRegistro": "pedro.lima",
+    "usuarioAprovacao": "carlos.rocha",
+    "situacaoLote": "ENVIADO",
+    "dataHoraSituacaoLote": "2026-11-22T13:20:00",
+    "instituicaoResponsavel": "0001",
+    "instituicao": "0003"
+  },
+  {
+    "idLote": 1004,
+    "dataEntrada": "2026-11-23T08:45:00",
+    "valorLote": 5600.00,
+    "quantidadeLancamentos": 5,
+    "usuarioRegistro": "lucas.melo",
+    "usuarioAprovacao": null,
+    "situacaoLote": "ABERTO",
+    "dataHoraSituacaoLote": "2026-11-23T08:45:00",
+    "instituicaoResponsavel": "0003",
+    "instituicao": "0002"
+  },
+  {
+    "idLote": 1005,
+    "dataEntrada": "2026-11-24T09:10:00",
+    "valorLote": 18900.00,
+    "quantidadeLancamentos": 12,
+    "usuarioRegistro": "mariana.alves",
+    "usuarioAprovacao": "roberto.souza",
+    "situacaoLote": "CONFIRMADO",
+    "dataHoraSituacaoLote": "2026-11-24T12:30:00",
+    "instituicaoResponsavel": "0002",
+    "instituicao": "0002"
+  }
+]

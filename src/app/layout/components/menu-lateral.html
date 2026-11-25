@@ -1,18 +1,22 @@
-
 <aside class="menu-container">
   <div class="menu-header">
     <button
       type="button"
       class="menu-button"
-      aria-label="Menu de navegação"
+      [attr.aria-label]="menuAberto()
+        ? 'Recolher menu de navegação'
+        : 'Abrir menu de navegação'"
+      [attr.aria-expanded]="menuAberto()"
+      (click)="solicitarAlternancia()"
     >
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <span class="menu-label">Menu</span>
-
-    <div class="menu-indicator"></div>
+    @if (menuAberto()) {
+      <span class="menu-label">Menu</span>
+      <div class="menu-indicator"></div>
+    }
   </div>
 </aside>

@@ -1,8 +1,14 @@
-
 <mat-sidenav-container class="layout-container">
-
-  <mat-sidenav class="menu-lateral" mode="side" [opened]="true">
-    <app-menu-lateral />
+  <mat-sidenav
+    class="menu-lateral"
+    [class.menu-recolhido]="!menuAberto()"
+    [opened]="true"
+    [mode]="'side'"
+  >
+    <app-menu-lateral
+      [menuAberto]="menuAberto()"
+      (alternarMenu)="alternarMenu()"
+    />
   </mat-sidenav>
 
   <mat-sidenav-content class="layout-content">
@@ -12,5 +18,4 @@
       <router-outlet />
     </main>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

@@ -1,3 +1,4 @@
+
 <mat-expansion-panel class="filtros-panel" [expanded]="true">
   <mat-expansion-panel-header>
     <mat-panel-title>Filtros</mat-panel-title>
@@ -6,9 +7,8 @@
   <section class="filtros-content">
     <h2>Pesquisar Lote Outros Créditos/Débitos</h2>
 
-    <form [formGroup]="filtrosForm">
+    <form [formGroup]="filtrosForm" (ngSubmit)="onPesquisar()">
       <div class="filtros-grid">
-        <!-- Coluna esquerda -->
         <div class="filtros-coluna">
           <mat-form-field appearance="outline">
             <mat-label>Instituição Resp.</mat-label>
@@ -31,7 +31,6 @@
           </mat-form-field>
         </div>
 
-        <!-- Coluna direita -->
         <div class="filtros-coluna">
           <div class="campo-faixa campo-faixa-id">
             <label class="campo-faixa-label">ID Lote</label>
@@ -69,24 +68,26 @@
               <mat-form-field appearance="outline">
                 <mat-label>De</mat-label>
                 <input matInput [matDatepicker]="dataDe" formControlName="dataEntradaDe" />
-                <mat-datepicker-toggle matIconSuffix [for]="dataDe" />
-                <mat-datepicker #dataDe />
+                <mat-datepicker-toggle matIconSuffix [for]="dataDe"></mat-datepicker-toggle>
+                <mat-datepicker #dataDe></mat-datepicker>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
                 <mat-label>Até</mat-label>
                 <input matInput [matDatepicker]="dataAte" formControlName="dataEntradaAte" />
-                <mat-datepicker-toggle matIconSuffix [for]="dataAte" />
-                <mat-datepicker #dataAte />
+                <mat-datepicker-toggle matIconSuffix [for]="dataAte"></mat-datepicker-toggle>
+                <mat-datepicker #dataAte></mat-datepicker>
               </mat-form-field>
             </div>
           </div>
         </div>
       </div>
-    </form>
 
-    <div class="filtros-actions">
-      <button mat-flat-button class="btn-primary">Pesquisar</button>
-    </div>
+      <div class="filtros-actions">
+        <button mat-flat-button class="btn-primary" type="submit">
+          Pesquisar
+        </button>
+      </div>
+    </form>
   </section>
 </mat-expansion-panel>
