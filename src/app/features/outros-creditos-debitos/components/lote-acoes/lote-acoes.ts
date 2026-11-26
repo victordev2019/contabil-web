@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class LoteAcoes {
   readonly quantidadeSelecionada = input(0);
   readonly incluirSolicitado = output<void>();
-
+  readonly visualizarSolicitado = output<void>();
   protected readonly possuiSelecaoUnica = computed(() => this.quantidadeSelecionada() === 1);
 
   protected readonly acoes: AcaoLote[] = [
@@ -25,5 +25,6 @@ export class LoteAcoes {
 
   protected executarAcao(acao: AcaoLote): void {
     if (acao.label === 'Incluir') this.incluirSolicitado.emit();
+    if (acao.label === 'Visualizar') this.visualizarSolicitado.emit();
   }
 }

@@ -10,7 +10,20 @@
     "situacaoLote": "CONFIRMADO",
     "dataHoraSituacaoLote": "2026-11-20T14:45:00",
     "instituicaoResponsavel": "0001",
-    "instituicao": "0001"
+    "instituicao": "0001",
+    "lancamentos": [
+      {
+      "contaCorrente": "12345-6",
+      "titular": "João da Silva",
+      "valor": 100,
+      "historico": "Lançamento Manual",
+      "estorno": false,
+      "documento": "123",
+      "descricao": "Lançamento de teste",
+      "situacao": "Pendente",
+      "pa": "0001"
+    }
+    ]
   },
   {
     "idLote": 1002,
@@ -22,7 +35,20 @@
     "situacaoLote": "ABERTO",
     "dataHoraSituacaoLote": "2026-11-21T10:15:00",
     "instituicaoResponsavel": "0002",
-    "instituicao": "0001"
+    "instituicao": "0001",
+    "lancamentos": [
+      {
+        "contaCorrente": "98765-4",
+        "titular": "Ana da Costa",
+        "valor": 200,
+        "historico": "Lançamento Automático",
+        "estorno": false,
+        "documento": "456",
+        "descricao": "Lançamento de teste 2",
+        "situacao": "Pendente",
+        "pa": "0001"
+      }
+    ]
   },
   {
     "idLote": 1003,
@@ -34,7 +60,20 @@
     "situacaoLote": "ENVIADO",
     "dataHoraSituacaoLote": "2026-11-22T13:20:00",
     "instituicaoResponsavel": "0001",
-    "instituicao": "0003"
+    "instituicao": "0003",
+    "lancamentos": [
+      {
+        "contaCorrente": "54321-0",
+        "titular": "Pedro da Lima",
+        "valor": 150,
+        "historico": "Lançamento Manual",
+        "estorno": false,
+        "documento": "789",
+        "descricao": "Lançamento de teste 3",
+        "situacao": "Pendente",
+        "pa": "0002"
+      }
+    ]
   },
   {
     "idLote": 1004,
@@ -46,7 +85,20 @@
     "situacaoLote": "ABERTO",
     "dataHoraSituacaoLote": "2026-11-23T08:45:00",
     "instituicaoResponsavel": "0003",
-    "instituicao": "0002"
+    "instituicao": "0002",
+    "lancamentos": [
+      {
+        "contaCorrente": "67890-1",
+        "titular": "Lucas do Melo",
+        "valor": 300,
+        "historico": "Lançamento Automático",
+        "estorno": false,
+        "documento": "321",
+        "descricao": "Lançamento de teste 4",
+        "situacao": "Pendente",
+        "pa": "0003"
+      }
+    ]
   },
   {
     "idLote": 1005,
@@ -58,7 +110,20 @@
     "situacaoLote": "CONFIRMADO",
     "dataHoraSituacaoLote": "2026-11-24T12:30:00",
     "instituicaoResponsavel": "0002",
-    "instituicao": "0002"
+    "instituicao": "0002",
+    "lancamentos": [
+      {
+        "contaCorrente": "11223-4",
+        "titular": "Mariana Alves",
+        "valor": 500,
+        "historico": "Lançamento Manual",
+        "estorno": false,
+        "documento": "654",
+        "descricao": "Lançamento de teste 5",
+        "situacao": "Pendente",
+        "pa": "0001"
+      }
+    ]
   },
    {
     "idLote": 1005,
@@ -70,7 +135,20 @@
     "situacaoLote": "CONFIRMADO",
     "dataHoraSituacaoLote": "2026-11-24T12:30:00",
     "instituicaoResponsavel": "0002",
-    "instituicao": "0002"
+    "instituicao": "0002",
+    "lancamentos": [
+      {
+        "contaCorrente": "11223-4",
+        "titular": "Mariana Alves",
+        "valor": 500,
+        "historico": "Lançamento Manual",
+        "estorno": false,
+        "documento": "654",
+        "descricao": "Lançamento de teste 5",
+        "situacao": "Pendente",
+        "pa": "0001"
+      }
+    ]
   },
    {
     "idLote": 1005,
@@ -82,6 +160,19 @@
     "situacaoLote": "CONFIRMADO",
     "dataHoraSituacaoLote": "2026-11-24T12:30:00",
     "instituicaoResponsavel": "0002",
-    "instituicao": "0002"
+    "instituicao": "0002",
+    "lancamentos": [
+      {
+        "contaCorrente": "11223-4",
+        "titular": "Mariana Alves",
+        "valor": 500,
+        "historico": "Lançamento Manual",
+        "estorno": false,
+        "documento": "654",
+        "descricao": "Lançamento de teste 5",
+        "situacao": "Pendente",
+        "pa": "0001"
+      }
+    ]
   }
 ]

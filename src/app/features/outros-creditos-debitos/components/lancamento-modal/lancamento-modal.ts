@@ -1,12 +1,14 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
-
 import { SHARED_IMPORTS } from '../../../../shared/shared-imports';
-import { Lancamento, ContaCorrente } from '../../models/lancamento.model';
+import { ContaCorrente, Lancamento } from '../../models/lancamento.model';
+import { Lote } from '../../models/lote.model';
 import { ContaCorrenteService } from '../../services/conta-corrente.service';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { LancamentoModalData } from '../../models/lancamento-modal-data.model';
 
 @Component({
   selector: 'app-lancamento-modal',
@@ -19,6 +21,10 @@ export class LancamentoModal {
   private readonly dialogRef = inject(MatDialogRef<LancamentoModal>);
   private readonly contaCorrenteService = inject(ContaCorrenteService);
   private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly dados = inject<Readonly<LancamentoModalData>>(MAT_DIALOG_DATA);
+  protected readonly modoVisualizacao = this.dados.modo === 'visualizacao';
+  protected readonly lote = this.dados.lote;
 
   protected readonly buscandoConta = signal(false);
   protected readonly contaEncontrada = signal<ContaCorrente | null>(null);
@@ -93,14 +99,10 @@ export class LancamentoModal {
   }
 
   protected incluir(): void {
+    if (this.modoVisualizacao) return;
     this.formulario.markAllAsTouched();
-
-    if (this.formulario.invalid) {
-      return;
-    }
-
+    if (this.formulario.invalid) return;
     const conta = this.contaEncontrada();
-
     if (!conta) {
       this.mensagemConta.set('Localize uma conta corrente antes de incluir o lançamento.');
       return;
@@ -121,5 +123,34 @@ export class LancamentoModal {
     };
 
     this.dialogRef.close(lancamento);
+  }
+
+  protected obterDadosLote(lote: Lote): { titulo: string; valor: string | number | null }[] {
+    const moeda = new CurrencyPipe('pt-BR');
+    const data = new DatePipe('pt-BR');
+    return [
+      { titulo: 'ID Lote', valor: lote.idLote },
+      { titulo: 'Data Entrada', valor: data.transform(lote.dataEntrada, 'dd/MM/yyyy HH:mm') },
+      { titulo: 'Valor Lote', valor: moeda.transform(lote.valorLote, 'BRL', 'symbol', '1.2-2') },
+      { titulo: 'Quantidade de Lançamentos', valor: lote.quantidadeLancamentos },
+      { titulo: 'Usuário Registro', valor: lote.usuarioRegistro },
+      { titulo: 'Usuário Aprovação', valor: lote.usuarioAprovacao ?? '-' },
+      { titulo: 'Situação', valor: lote.situacaoLote },
+      { titulo: 'Data/Hora Situação', valor: data.transform(lote.dataHoraSituacaoLote, 'dd/MM/yyyy HH:mm') },
+    ];
+  }
+
+  protected obterDadosLancamento(lancamento: Lancamento): { titulo: string; valor: string | number }[] {
+    return [
+      { titulo: 'Conta Corrente', valor: lancamento.contaCorrente },
+      { titulo: 'Titular', valor: lancamento.titular },
+      { titulo: 'Valor', valor: lancamento.valor },
+      { titulo: 'Histórico', valor: lancamento.historico },
+      { titulo: 'Estorno', valor: lancamento.estorno ? 'Sim' : 'Não' },
+      { titulo: 'Documento', valor: lancamento.documento },
+      { titulo: 'Descrição', valor: lancamento.descricao || '-' },
+      { titulo: 'Situação', valor: lancamento.situacao },
+      { titulo: 'PA', valor: lancamento.pa },
+    ];
   }
 }

@@ -1,6 +1,6 @@
 
 <mat-card class="lote-card">
   <app-lote-filtros (pesquisar)="pesquisar($event)" />
-  <app-lote-acoes [quantidadeSelecionada]="quantidadeSelecionada()" (incluirSolicitado)="abrirModalLancamento()"/>
-  <app-lote-tabela [lotes]="lotes()" [carregando]="carregando()" [pesquisado]="pesquisado()" (selecaoAlterada)="atualizarQuantidadeSelecionada($event)"/>
+  <app-lote-acoes [quantidadeSelecionada]="quantidadeSelecionada()" (incluirSolicitado)="abrirModalLancamento('inclusao')" (visualizarSolicitado)="abrirModalLancamento('visualizacao')"/>
+  <app-lote-tabela [lotes]="lotes()" [carregando]="carregando()" [pesquisado]="pesquisado()" (selecaoAlterada)="atualizarQuantidadeSelecionada($event)" (loteSelecionado)="atualizarLoteSelecionado($event)"/>
 </mat-card>

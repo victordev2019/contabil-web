@@ -26,6 +26,7 @@ export class LoteTabela implements OnChanges {
   readonly lotes = input<Lote[]>([]);
   readonly pesquisado = input(false);
   readonly selecaoAlterada = output<number>();
+  readonly loteSelecionado = output<Lote | null>();
 
   protected readonly itensPorPagina = 5;
 
@@ -45,7 +46,7 @@ export class LoteTabela implements OnChanges {
   ];
 
   protected readonly totalPaginas = computed(() =>
-    Math.ceil(this.lotes().length / this.itensPorPagina)
+    Math.ceil(this.lotes().length / this.itensPorPagina),
   );
 
   protected readonly paginaExibida = computed(() =>
@@ -62,20 +63,14 @@ export class LoteTabela implements OnChanges {
   protected readonly todosSelecionados = computed(() => {
     const lotes = this.lotesDaPagina();
 
-    return (
-      lotes.length > 0 &&
-      lotes.every((lote) => this.lotesSelecionados().has(lote.idLote))
-    );
+    return lotes.length > 0 && lotes.every((lote) => this.lotesSelecionados().has(lote.idLote));
   });
 
   protected readonly algunsSelecionados = computed(() => {
     const lotes = this.lotesDaPagina();
     const selecionados = this.lotesSelecionados();
 
-    return (
-      lotes.some((lote) => selecionados.has(lote.idLote)) &&
-      !this.todosSelecionados()
-    );
+    return lotes.some((lote) => selecionados.has(lote.idLote)) && !this.todosSelecionados();
   });
 
   protected readonly itensPaginacao: ItemPaginacao[] = [
@@ -122,6 +117,7 @@ export class LoteTabela implements OnChanges {
     this.paginaAtual.set(0);
     this.lotesSelecionados.set(new Set());
     this.selecaoAlterada.emit(0);
+    this.loteSelecionado.emit(null);
   }
 
   protected estaSelecionado(idLote: number): boolean {
@@ -179,5 +175,13 @@ export class LoteTabela implements OnChanges {
   private atualizarSelecao(selecao: Set<number>): void {
     this.lotesSelecionados.set(selecao);
     this.selecaoAlterada.emit(selecao.size);
+
+    const idLote = selecao.size === 1 ? selecao.values().next().value : null;
+
+    const loteSelecionado = idLote
+      ? (this.lotes().find((lote) => lote.idLote === idLote) ?? null)
+      : null;
+
+    this.loteSelecionado.emit(loteSelecionado);
   }
 }
