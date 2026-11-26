@@ -2,9 +2,9 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
-
 import { SHARED_IMPORTS } from '../../../../shared/shared-imports';
 import { LoteFiltros as LoteFiltrosModel } from '../../models/lote.model';
+import { intervaloDataValidator } from '../../../../shared/validators/intervalo-data.validator';
 
 @Component({
   selector: 'app-lote-filtros',
@@ -29,7 +29,11 @@ export class LoteFiltros {
     valorLoteAte: [null as number | null],
 
     dataEntradaDe: [null as Date | null],
-    dataEntradaAte: [null as Date | null],
+    dataEntradaAte: [null as Date | null]
+  }, {
+    validators: [
+      intervaloDataValidator('dataEntradaDe', 'dataEntradaAte'),
+    ],
   });
 
   protected onPesquisar(): void {
