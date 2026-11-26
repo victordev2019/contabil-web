@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import { Lote } from '../../models/lote.model';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ItemPaginacao } from '../../models/item-paginacao.model';
 @Component({
   imports: [
     MatPaginatorModule,

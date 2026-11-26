@@ -1,59 +1,159 @@
 # ContabilWeb
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.2.
+Aplicação web desenvolvida para o gerenciamento e consulta de lotes de Outros Créditos/Débitos, permitindo pesquisar registros, visualizar informações e incluir lançamentos.
 
-## Development server
+O projeto foi desenvolvido como parte de um teste técnico, utilizando Angular e Angular Material, com dados simulados em memória.
 
-To start a local development server, run:
+## Tecnologias utilizadas
+
+- Angular 22
+- TypeScript
+- Angular Material
+- SCSS
+- RxJS
+- Signals
+- Reactive Forms
+- Jest
+- ESLint (angular-eslint)
+
+## Funcionalidades
+
+### Consulta de Lotes
+
+- Pesquisa de lotes utilizando filtros.
+- Filtros por instituição responsável, instituição, situação, ID, valor e data de entrada.
+- Seleção individual e seleção de todos os registros da página.
+- Paginação dos resultados.
+- Formatação de valores monetários e datas no padrão brasileiro.
+- Barra de ações com controle de habilitação conforme a quantidade de registros selecionados.
+- Indicador de carregamento durante a pesquisa.
+- Mensagem para quando nenhum resultado for encontrado.
+
+### Inclusão e visualização de lançamentos
+
+- Modal para inclusão de lançamentos.
+- Consulta de conta corrente utilizando dados simulados.
+- Exibição do titular da conta localizada.
+- Formulário com validações reativas.
+- Campos para valor, histórico, estorno, documento, descrição, situação e PA.
+- Visualização dos dados completos do lote e dos lançamentos associados.
+- Inclusão de novos lotes na tabela principal, com os dados essenciais para identificação.
+
+## Organização do projeto
+
+A estrutura foi organizada por funcionalidades, separando componentes, modelos, serviços e dados simulados.
+
+```text
+src/
+└── app/
+    ├── features/
+    │   └── outros-creditos-debitos/
+    │       ├── components/
+    │       │   ├── lancamento-modal/
+    │       │   ├── lote-acoes/
+    │       │   ├── lote-filtros/
+    │       │   └── lote-tabela/
+    │       ├── mocks/
+    │       ├── models/
+    │       ├── pages/
+    │       └── services/
+    └── shared/
+```
+
+## Como executar o projeto
+
+### Pré-requisitos
+
+- Node.js
+- npm
+- Angular CLI
+
+### Instalação
+
+Clone o repositório e acesse a pasta do projeto:
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd contabil-web
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+### Servidor de desenvolvimento
+
+Execute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse http://localhost:4200/.
 
-## Code scaffolding
+A aplicação será atualizada automaticamente quando os arquivos forem modificados.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Dados simulados (Mock)
 
-```bash
-ng generate component component-name
-```
+O projeto utiliza arquivos JSON e serviços Angular para simular a comunicação com uma API.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+As consultas são realizadas por meio de Observables, utilizando `of()` e `delay()` para simular o comportamento assíncrono de uma requisição HTTP.
 
-```bash
-ng generate --help
-```
+Os lançamentos incluídos são mantidos em memória durante a execução da aplicação. Não há integração com backend ou persistência em banco de dados.
 
-## Building
+## Decisões de implementação
 
-To build the project run:
+- Os componentes foram separados por responsabilidade, facilitando a manutenção e reutilização.
+- Os filtros e formulários utilizam Reactive Forms.
+- Signals são utilizados para gerenciamento de estados locais da interface.
+- A tabela possui seleção individual e seleção por página, respeitando a paginação.
+- A inclusão de um lançamento gera um novo lote na tabela principal, exibindo apenas os dados essenciais.
+- As informações completas do lote e seus lançamentos ficam disponíveis na ação Visualizar.
+- As ações Alterar e Excluir foram mantidas na interface conforme os requisitos, sem implementação de operações não especificadas funcionalmente.
+
+## Build
+
+Para gerar a versão de produção:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Os arquivos compilados serão disponibilizados no diretório `dist/`.
 
-## Running unit tests
+## Testes
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Para executar os testes unitários:
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+O projeto utiliza Jest como executor de testes.
 
-## Additional Resources
+## Qualidade de código e lint
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+O projeto utiliza ESLint integrado ao Angular por meio do `angular-eslint`, permitindo identificar problemas de código, inconsistências e possíveis más práticas.
+
+Para executar a análise estática:
+
+```bash
+ng lint
+```
+
+Para tentar corrigir automaticamente os problemas compatíveis com autofix:
+
+```bash
+ng lint --fix
+```
+
+## Recursos adicionais
+
+- [Angular](https://angular.dev/)
+- [Angular Material](https://material.angular.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [RxJS](https://rxjs.dev/)
+- [Jest](https://jestjs.io/)
+- [ESLint](https://eslint.org/)

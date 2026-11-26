@@ -1,5 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { AcaoLote } from '../../models/acao-lote.model';
 
 @Component({
   selector: 'app-lote-acoes',
