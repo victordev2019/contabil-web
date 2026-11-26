@@ -139,7 +139,7 @@ export class LoteTabela implements OnChanges {
   protected alterarSelecaoTodos(selecionado: boolean): void {
     const selecao = new Set(this.lotesSelecionados());
 
-    for (const lote of this.lotes()) {
+    for (const lote of this.lotesDaPagina()) {
       if (selecionado) {
         selecao.add(lote.idLote);
       } else {
