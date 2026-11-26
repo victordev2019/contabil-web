@@ -6,6 +6,8 @@ import { LoteTabela } from '../../components/lote-tabela/lote-tabela';
 import { Lote, LoteFiltros as LoteFiltrosModel } from '../../models/lote.model';
 import { LoteService } from '../../services/lote.service';
 import { finalize } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { LancamentoModal } from '../../components/lancamento-modal/lancamento-modal';
 
 @Component({
   selector: 'app-lote-listagem',
@@ -20,7 +22,7 @@ import { finalize } from 'rxjs';
 })
 export class LoteListagem {
   private readonly loteService = inject(LoteService);
-
+  private readonly dialog = inject(MatDialog);
   protected readonly carregando = signal(false);
 
   protected readonly lotes = signal<Lote[]>([]);
@@ -31,6 +33,14 @@ export class LoteListagem {
 
   protected atualizarQuantidadeSelecionada(quantidade: number): void {
     this.quantidadeSelecionada.set(quantidade);
+  }
+
+  protected abrirModalLancamento(): void {
+    this.dialog.open(LancamentoModal, {
+      width: '800px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+    });
   }
 
   protected pesquisar(filtros: LoteFiltrosModel): void {

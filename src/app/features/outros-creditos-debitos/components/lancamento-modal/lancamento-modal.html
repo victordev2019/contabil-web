@@ -1,1 +1,180 @@
-<p>lancamento-modal works!</p>
+<h2 mat-dialog-title>Incluir Lançamento</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formulario">
+
+    <!-- Seção Conta Corrente -->
+    <section class="modal-section">
+      <h3>Conta Corrente</h3>
+
+      <div class="form-grid">
+
+        <!-- Conta Corrente e botão de busca -->
+        <div class="conta-corrente-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Conta Corrente</mat-label>
+            <input
+              matInput
+              formControlName="contaCorrente"
+              placeholder="Ex.: 12345-6"
+            />
+
+            @if (
+              formulario.controls.contaCorrente.hasError('required') &&
+              formulario.controls.contaCorrente.touched
+            ) {
+              <mat-error>Informe a conta corrente.</mat-error>
+            }
+
+            @if (
+              formulario.controls.contaCorrente.hasError('pattern') &&
+              formulario.controls.contaCorrente.touched
+            ) {
+              <mat-error>Informe no formato 12345-6.</mat-error>
+            }
+          </mat-form-field>
+
+          <button
+            mat-icon-button
+            type="button"
+            aria-label="Buscar conta corrente"
+            (click)="buscarConta()"
+            [disabled]="buscandoConta()"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+
+        <div class="conta-corrente-status">
+          @if (buscandoConta()) {
+            <span>Pesquisando conta...</span>
+          }
+
+          @if (contaEncontrada(); as conta) {
+            <div class="titular-info">
+              Titular: <strong>{{ conta.titular }}</strong>
+            </div>
+          } @else if (mensagemConta()) {
+            <div class="mensagem-conta-erro">
+              {{ mensagemConta() }}
+            </div>
+          }
+        </div>
+
+        <!-- Valor -->
+        <mat-form-field appearance="outline">
+          <mat-label>Valor</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="valor"
+            placeholder="0,00"
+          />
+
+          @if (
+            formulario.controls.valor.hasError('required') &&
+            formulario.controls.valor.touched
+          ) {
+            <mat-error>Informe o valor.</mat-error>
+          }
+
+          @if (
+            formulario.controls.valor.hasError('min') &&
+            formulario.controls.valor.touched
+          ) {
+            <mat-error>O valor deve ser maior que zero.</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Histórico -->
+        <mat-form-field appearance="outline">
+          <mat-label>Histórico</mat-label>
+          <mat-select formControlName="historico">
+            <mat-option value="Lançamento Manual">
+              Lançamento Manual
+            </mat-option>
+          </mat-select>
+
+          @if (
+            formulario.controls.historico.hasError('required') &&
+            formulario.controls.historico.touched
+          ) {
+            <mat-error>Selecione o histórico.</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Estorno -->
+        <mat-checkbox formControlName="estorno">
+          Estorno
+        </mat-checkbox>
+
+        <!-- Documento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Documento</mat-label>
+          <input matInput formControlName="documento" />
+
+          @if (
+            formulario.controls.documento.hasError('required') &&
+            formulario.controls.documento.touched
+          ) {
+            <mat-error>Informe o documento.</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Descrição -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descrição</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            formControlName="descricao"
+          ></textarea>
+        </mat-form-field>
+
+        <!-- Situação -->
+        <mat-form-field appearance="outline">
+          <mat-label>Situação</mat-label>
+          <input matInput formControlName="situacao" />
+        </mat-form-field>
+
+      </div>
+    </section>
+
+    <!-- Seção Documento CSC -->
+    <section class="modal-section">
+      <h3>Documento CSC</h3>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>PA</mat-label>
+          <mat-select formControlName="pa">
+            @for (opcao of opcoesPa; track opcao.valor) {
+              <mat-option [value]="opcao.valor">
+                {{ opcao.descricao }}
+              </mat-option>
+            }
+          </mat-select>
+
+          @if (
+            formulario.controls.pa.hasError('required') &&
+            formulario.controls.pa.touched
+          ) {
+            <mat-error>Selecione o PA.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </section>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button mat-flat-button class="btn-primary" type="button" (click)="incluir()">
+    Incluir
+  </button>
+
+  <button mat-button class="btn-secondary" type="button" mat-dialog-close>
+    Fechar
+  </button>
+</mat-dialog-actions>

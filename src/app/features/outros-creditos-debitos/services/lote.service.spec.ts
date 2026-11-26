@@ -24,16 +24,16 @@ describe('LoteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [LoteService] });
     service = TestBed.inject(LoteService);
-    vi.useFakeTimers();
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    jest.useRealTimers();
   });
 
   async function pesquisar(filtros: LoteFiltros) {
     const resultado = firstValueFrom(service.pesquisar(filtros));
-    await vi.advanceTimersByTimeAsync(500);
+    await jest.advanceTimersByTimeAsync(500);
     return resultado;
   }
 
@@ -48,83 +48,69 @@ describe('LoteService', () => {
   });
 
   it('deve filtrar por instituição responsável, ignorando espaços e maiúsculas', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       instituicaoResponsavel: ' 0002 ',
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1002, 1005]);
   });
 
   it('deve filtrar por situação', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
-      situacaoLote: 'ABERTO' as const,
-    };
-
-    const lotes = await pesquisar(filtros);
+      situacaoLote: 'ABERTO',
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1002, 1004]);
   });
 
   it('deve filtrar por faixa de ID', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       idLoteDe: 1003,
       idLoteAte: 1004,
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1003, 1004]);
   });
 
   it('deve filtrar por faixa de valor', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       valorLoteDe: 10000,
       valorLoteAte: 20000,
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1001, 1005]);
   });
 
   it('deve incluir os lotes no último dia da faixa de datas', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       dataEntradaDe: new Date(2026, 10, 23),
       dataEntradaAte: new Date(2026, 10, 24),
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1004, 1005]);
   });
 
   it('deve combinar instituição, situação e limites', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       instituicao: '0002',
-      situacaoLote: 'CONFIRMADO' as const,
+      situacaoLote: 'CONFIRMADO',
       valorLoteDe: 15000,
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes.map((lote) => lote.idLote)).toEqual([1005]);
   });
 
   it('deve retornar vazio quando nenhum lote corresponder', async () => {
-    const filtros = {
+    const lotes = await pesquisar({
       ...filtrosPadrao(),
       idLoteDe: 9999,
-    };
-
-    const lotes = await pesquisar(filtros);
+    });
 
     expect(lotes).toEqual([]);
   });

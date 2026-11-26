@@ -1,10 +1,5 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-
-interface AcaoLote {
-  label: string;
-  exigeSelecaoUnica: boolean;
-}
 
 @Component({
   selector: 'app-lote-acoes',
@@ -14,10 +9,9 @@ interface AcaoLote {
 })
 export class LoteAcoes {
   readonly quantidadeSelecionada = input(0);
+  readonly incluirSolicitado = output<void>();
 
-  protected readonly possuiSelecaoUnica = computed(
-    () => this.quantidadeSelecionada() === 1,
-  );
+  protected readonly possuiSelecaoUnica = computed(() => this.quantidadeSelecionada() === 1);
 
   protected readonly acoes: AcaoLote[] = [
     { label: 'Confirmar', exigeSelecaoUnica: false },
@@ -28,4 +22,8 @@ export class LoteAcoes {
     { label: 'Excluir', exigeSelecaoUnica: true },
     { label: 'Visualizar', exigeSelecaoUnica: true },
   ];
+
+  protected executarAcao(acao: AcaoLote): void {
+    if (acao.label === 'Incluir') this.incluirSolicitado.emit();
+  }
 }

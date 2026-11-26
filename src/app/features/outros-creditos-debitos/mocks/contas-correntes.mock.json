@@ -1,0 +1,18 @@
+[
+  {
+    "numero": "12345-6",
+    "titular": "João da Silva"
+  },
+  {
+    "numero": "23456-7",
+    "titular": "Maria Santos"
+  },
+  {
+    "numero": "34567-8",
+    "titular": "Carlos Oliveira"
+  },
+  {
+    "numero": "45678-9",
+    "titular": "Ana Costa"
+  }
+]

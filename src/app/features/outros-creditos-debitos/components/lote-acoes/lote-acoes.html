@@ -5,7 +5,8 @@
       class="btn-primary"
       type="button"
       [disabled]="acao.exigeSelecaoUnica && !possuiSelecaoUnica()"
-    >
+      (click)="executarAcao(acao)"
+      >
       {{ acao.label }}
     </button>
   }

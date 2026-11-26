@@ -1,3 +1,4 @@
+import { Lancamento } from "./lancamento.model";
 
 export type SituacaoLote = 'ABERTO' | 'ENVIADO' | 'CONFIRMADO';
 
@@ -12,6 +13,7 @@ export interface Lote {
   dataHoraSituacaoLote: string;
   instituicaoResponsavel: string;
   instituicao: string;
+  lancamentos: Lancamento[];
 }
 
 export interface LoteFiltros {
