@@ -72,7 +72,7 @@ export class LoteListagem {
       lancamentos: [lancamento],
     };
 
-    this.lotes.update((lotes) => [...lotes, novoLote]);
+    this.lotes.update((lotes) => [novoLote, ...lotes]);
     this.pesquisado.set(true);
     this.quantidadeSelecionada.set(0);
   }

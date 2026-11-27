@@ -9,6 +9,7 @@ import { Lote } from '../../models/lote.model';
 import { ContaCorrenteService } from '../../services/conta-corrente.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { LancamentoModalData } from '../../models/lancamento-modal-data.model';
+import { valorMonetarioValidator } from '../../../../shared/validators/valor-monetario.validator';
 
 @Component({
   selector: 'app-lancamento-modal',
@@ -32,7 +33,7 @@ export class LancamentoModal {
 
   protected readonly formulario = this.formBuilder.group({
     contaCorrente: ['', [Validators.required, Validators.pattern(/^\d{5}-\d$/)]],
-    valor: [null as number | null, [Validators.required, Validators.min(0.01)]],
+    valor: ['', [Validators.required, valorMonetarioValidator()]],
     historico: ['', Validators.required],
     estorno: [false],
     documento: ['', Validators.required],
@@ -113,7 +114,7 @@ export class LancamentoModal {
     const lancamento: Lancamento = {
       contaCorrente: dadosFormulario.contaCorrente?.trim() ?? '',
       titular: conta.titular,
-      valor: dadosFormulario.valor ?? 0,
+      valor: Number((dadosFormulario.valor ?? '').replace(/\./g, '').replace(',', '.')),
       historico: dadosFormulario.historico ?? '',
       estorno: dadosFormulario.estorno ?? false,
       documento: dadosFormulario.documento ?? '',

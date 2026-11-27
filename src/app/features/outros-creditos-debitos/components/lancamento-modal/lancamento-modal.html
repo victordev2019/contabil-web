@@ -24,7 +24,6 @@
           <div class="lancamentos-lista">
             @for (lancamento of lote.lancamentos; track $index) {
               <article class="lancamento-card">
-
                 <div class="lancamento-grid">
                   @for (dado of obterDadosLancamento(lancamento); track dado.titulo) {
                     <div class="dado-item">
@@ -99,12 +98,25 @@
           <!-- Valor -->
           <mat-form-field appearance="outline">
             <mat-label>Valor</mat-label>
-            <input matInput type="number" formControlName="valor" placeholder="0,00" />
+            <input
+              matInput
+              type="text"
+              inputmode="decimal"
+              formControlName="valor"
+              placeholder="0,00"
+            />
 
             @if (
               formulario.controls.valor.hasError('required') && formulario.controls.valor.touched
             ) {
               <mat-error>Informe o valor.</mat-error>
+            }
+
+            @if (
+              formulario.controls.valor.hasError('formatoMonetario') &&
+              formulario.controls.valor.touched
+            ) {
+              <mat-error>Informe um valor monetário válido.</mat-error>
             }
 
             @if (formulario.controls.valor.hasError('min') && formulario.controls.valor.touched) {
